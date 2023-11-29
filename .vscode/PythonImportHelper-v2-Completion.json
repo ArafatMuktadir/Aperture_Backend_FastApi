@@ -1,0 +1,70 @@
+[
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Body",
+        "importPath": "fastapi.params",
+        "description": "fastapi.params",
+        "isExtraImport": true,
+        "detail": "fastapi.params",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Post",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class Post(BaseModel):       #class Post inherits class BaseModel\n    title: str   #attribute title would only hold string (type hinting class attribute)\n    content: str\n    published: bool = True    #if the user doesn't give any value then the boolean value would be True\n    rating: Optional[int] = None    #Using Optional[int] instead of just int will let the editor help you detecting errors where you could be assuming that a value is always a str, when it could actually be None too. This is a type hinting.\n@app.get(\"/\")\ndef root():\n    return {\"message\": \"Welcome to my API!!!\"}\n@app.get(\"/posts\")\ndef get_posts():",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "root",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def root():\n    return {\"message\": \"Welcome to my API!!!\"}\n@app.get(\"/posts\")\ndef get_posts():\n    return {\"data\":\"This is your posts\"}\n@app.post(\"/createposts\")\ndef create_posts(post: Post):  #post would only hold new datatype created by class Post (type hinting function attribute)\n    print(post)\n    print(post.title)\n    print(post.content)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_posts",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_posts():\n    return {\"data\":\"This is your posts\"}\n@app.post(\"/createposts\")\ndef create_posts(post: Post):  #post would only hold new datatype created by class Post (type hinting function attribute)\n    print(post)\n    print(post.title)\n    print(post.content)\n    print(post.published)\n    print(post.rating)\n    print(post.dict())  #post saves the data as a pydantic model and we can use .dict() in a pydantic model",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "create_posts",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def create_posts(post: Post):  #post would only hold new datatype created by class Post (type hinting function attribute)\n    print(post)\n    print(post.title)\n    print(post.content)\n    print(post.published)\n    print(post.rating)\n    print(post.dict())  #post saves the data as a pydantic model and we can use .dict() in a pydantic model\n    return{\"data\": post}",
+        "detail": "main",
+        "documentation": {}
+    }
+]
