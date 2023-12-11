@@ -8,6 +8,30 @@
         "documentation": {}
     },
     {
+        "label": "Response",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "Body",
         "importPath": "fastapi.params",
         "description": "fastapi.params",
@@ -32,39 +56,110 @@
         "documentation": {}
     },
     {
+        "label": "randrange",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
         "label": "Post",
         "kind": 6,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "class Post(BaseModel):       #class Post inherits class BaseModel\n    title: str   #attribute title would only hold string (type hinting class attribute)\n    content: str\n    published: bool = True    #if the user doesn't give any value then the boolean value would be True\n    rating: Optional[int] = None    #Using Optional[int] instead of just int will let the editor help you detecting errors where you could be assuming that a value is always a str, when it could actually be None too. This is a type hinting.\n@app.get(\"/\")\ndef root():\n    return {\"message\": \"Welcome to my API!!!\"}\n@app.get(\"/posts\")\ndef get_posts():",
-        "detail": "main",
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "class Post(BaseModel):       #This code is for creating and updating posts. Class Post inherits class BaseModel\n    title: str   #attribute title would only hold string (type hinting class attribute)\n    content: str\n    published: bool = True    #if the user doesn't give any value then the boolean value would be True\n    rating: Optional[int] = None    #Using Optional[int] instead of just int will let the editor help you detecting errors where you could be assuming that a value is always a str, when it could actually be None too. This is a type hinting.\nmy_posts = [{\"title\":\"title of post 1\", \"content\":\"content of post 1\", \"id\":1}, {\"title\":\"cool cars\", \"content\":\"m4k and outlander are cool cars\", \"id\":2}]\ndef find_post(id):   # a function to retrieve posts using id\n    for x in my_posts:\n        if x[\"id\"] == id:\n            return x",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "find_post",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def find_post(id):   # a function to retrieve posts using id\n    for x in my_posts:\n        if x[\"id\"] == id:\n            return x\ndef find_index_post(id):  #a function to retrieve an id's index\n    for x, j in enumerate(my_posts):  #enumerate returns enumerate object(use list() to return a tuple)\n        if j[\"id\"] == id:\n            return x\n#routes are order dependent\n#entering an url/route will check the first decorator then so on and so forth",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "find_index_post",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def find_index_post(id):  #a function to retrieve an id's index\n    for x, j in enumerate(my_posts):  #enumerate returns enumerate object(use list() to return a tuple)\n        if j[\"id\"] == id:\n            return x\n#routes are order dependent\n#entering an url/route will check the first decorator then so on and so forth\n@app.get(\"/\") #@app is called a decorator \ndef root():\n    return {\"message\": \"Welcome to my API!!!\"}\n@app.get(\"/posts\")  #Retrieve all the posts from the database using get method (CRUD operation)",
+        "detail": "app.main",
         "documentation": {}
     },
     {
         "label": "root",
         "kind": 2,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "def root():\n    return {\"message\": \"Welcome to my API!!!\"}\n@app.get(\"/posts\")\ndef get_posts():\n    return {\"data\":\"This is your posts\"}\n@app.post(\"/createposts\")\ndef create_posts(post: Post):  #post would only hold new datatype created by class Post (type hinting function attribute)\n    print(post)\n    print(post.title)\n    print(post.content)",
-        "detail": "main",
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def root():\n    return {\"message\": \"Welcome to my API!!!\"}\n@app.get(\"/posts\")  #Retrieve all the posts from the database using get method (CRUD operation)\ndef get_posts():\n    return {\"data\" : my_posts} #fastapi will convert the array into a json \n@app.post(\"/posts\", status_code=status.HTTP_201_CREATED)  #Create a post using post method (CRUD operation), Status code 201 is given as a default as posting should giver 201 as the status code\ndef create_posts(post: Post):   #post would only hold new datatype created by class Post (type hinting function attribute)\n    print(post)    #the datatype post is holding is a pydantic model\n    print(post.title)\n    print(post.content)",
+        "detail": "app.main",
         "documentation": {}
     },
     {
         "label": "get_posts",
         "kind": 2,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "def get_posts():\n    return {\"data\":\"This is your posts\"}\n@app.post(\"/createposts\")\ndef create_posts(post: Post):  #post would only hold new datatype created by class Post (type hinting function attribute)\n    print(post)\n    print(post.title)\n    print(post.content)\n    print(post.published)\n    print(post.rating)\n    print(post.dict())  #post saves the data as a pydantic model and we can use .dict() in a pydantic model",
-        "detail": "main",
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def get_posts():\n    return {\"data\" : my_posts} #fastapi will convert the array into a json \n@app.post(\"/posts\", status_code=status.HTTP_201_CREATED)  #Create a post using post method (CRUD operation), Status code 201 is given as a default as posting should giver 201 as the status code\ndef create_posts(post: Post):   #post would only hold new datatype created by class Post (type hinting function attribute)\n    print(post)    #the datatype post is holding is a pydantic model\n    print(post.title)\n    print(post.content)\n    print(post.published)\n    print(post.rating)\n    print(post.dict())      #dict() converts the post's data which is a pydantic model to a dictionary",
+        "detail": "app.main",
         "documentation": {}
     },
     {
         "label": "create_posts",
         "kind": 2,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "def create_posts(post: Post):  #post would only hold new datatype created by class Post (type hinting function attribute)\n    print(post)\n    print(post.title)\n    print(post.content)\n    print(post.published)\n    print(post.rating)\n    print(post.dict())  #post saves the data as a pydantic model and we can use .dict() in a pydantic model\n    return{\"data\": post}",
-        "detail": "main",
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def create_posts(post: Post):   #post would only hold new datatype created by class Post (type hinting function attribute)\n    print(post)    #the datatype post is holding is a pydantic model\n    print(post.title)\n    print(post.content)\n    print(post.published)\n    print(post.rating)\n    print(post.dict())      #dict() converts the post's data which is a pydantic model to a dictionary\n    post_dict=post.dict()\n    post_dict[\"id\"] = randrange(0,1000000000) \n    my_posts.append(post_dict)",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_post",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def get_post(id: int, response_msg: Response):   #int type hint so that fastapi gives error msg id string is given, response_msg will have the Response object\n    post= find_post(id)\n    if not post:\n        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= f\"post with id: {id} was not found\")   #Status code 404 given, detail=\"\" msg will be returned to the frontend as fastapi does that automatically \n        #he upper code is the alternative of the code given below in the comments\n        #response_msg.status_code = status.HTTP_404_NOT_FOUND  #it will set the Status to 404 if post is empty\n        #return{\"message\":f\"post with id: {id} was not found\"}\n    return{\"post_detail\" : post}\n@app.delete(\"/posts/{id}\", status_code=status.HTTP_204_NO_CONTENT)  #Delete a particular post, 204 given as a status code\ndef delete_post(id: int):",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "delete_post",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def delete_post(id: int):\n    index= find_index_post(id)\n    #If the id does not exists, find_index_post would return None and pop(None) would not work. So we raise an HTTP exception\n    if index == None:\n        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f\"post with id:{id} does not exist\")\n    my_posts.pop(index)\n    return Response(status_code=status.HTTP_204_NO_CONTENT)\n#The PUT operation is a replace operation—not an update operation—because the resource instance in the request body replaces every changeable configuration attribute of the existing resource. To update specific fields, use the PATCH operation\n#Here in the code below, I have given the updated data in the frontend(All required fields).Then, I took the post of the id that I want top update and check if it exists. If it does, the post of that id gets replaced in the same index and get the same id.\n@app.put(\"/posts/{id}\")",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "update_post",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def update_post(id: int, post: Post):\n    print(post)\n    #code for if the id does not exists for put method, throw a 404\n    index= find_index_post(id)  \n    if index == None:\n        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f\"post with id:{id} does not exist\")\n    #if the id exits, we'll update it\n    post_dict=post.dict()\n    print(post_dict)\n    post_dict[\"id\"]=id    #we put same id in the dict",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "app = FastAPI()  #app is my fastapi instance\nclass Post(BaseModel):       #This code is for creating and updating posts. Class Post inherits class BaseModel\n    title: str   #attribute title would only hold string (type hinting class attribute)\n    content: str\n    published: bool = True    #if the user doesn't give any value then the boolean value would be True\n    rating: Optional[int] = None    #Using Optional[int] instead of just int will let the editor help you detecting errors where you could be assuming that a value is always a str, when it could actually be None too. This is a type hinting.\nmy_posts = [{\"title\":\"title of post 1\", \"content\":\"content of post 1\", \"id\":1}, {\"title\":\"cool cars\", \"content\":\"m4k and outlander are cool cars\", \"id\":2}]\ndef find_post(id):   # a function to retrieve posts using id\n    for x in my_posts:\n        if x[\"id\"] == id:",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "my_posts",
+        "kind": 5,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "my_posts = [{\"title\":\"title of post 1\", \"content\":\"content of post 1\", \"id\":1}, {\"title\":\"cool cars\", \"content\":\"m4k and outlander are cool cars\", \"id\":2}]\ndef find_post(id):   # a function to retrieve posts using id\n    for x in my_posts:\n        if x[\"id\"] == id:\n            return x\ndef find_index_post(id):  #a function to retrieve an id's index\n    for x, j in enumerate(my_posts):  #enumerate returns enumerate object(use list() to return a tuple)\n        if j[\"id\"] == id:\n            return x\n#routes are order dependent",
+        "detail": "app.main",
         "documentation": {}
     }
 ]
